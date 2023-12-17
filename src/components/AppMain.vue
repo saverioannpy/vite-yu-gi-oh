@@ -11,10 +11,14 @@ export default {
 </script>
 
 <template>
-  <CardFilter />
-  <CardList />
+  <div class="main-container">
+    <CardFilter />
+    <CardList />
+  </div>
 </template>
 
-<style>
-
+<style lang="scss">
+  .main-container{
+    background-color: #d48f38;
+  }
 </style>

@@ -5,8 +5,8 @@ export default {
 </script>
 
 <template>
-  <div>
-    CardFilter: placeholder
+  <div class="container">
+    filter:placeholder
   </div>
 </template>
 

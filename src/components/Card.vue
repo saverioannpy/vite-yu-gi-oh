@@ -1,19 +1,20 @@
 <script>
 export default {
     name: 'Card',
+    props: ['img', 'name', 'archetype'],
 };
 </script>
 
 <template>
-  <div>
-    <div>
-      immagine
+  <div class="card-container">
+    <div class="card-img">
+      <img :src="img" alt="name">
     </div>
     <div class="card-name">
-      <h5>Nome Carta</h5>
+      <p>{{  name }}</p>
     </div>
     <div class="card-archetype">
-      <p>Archetype</p>
+      <p> {{  archetype }}</p>
     </div>
   </div>
 </template>
