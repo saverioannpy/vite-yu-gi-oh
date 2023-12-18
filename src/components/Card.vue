@@ -1,20 +1,25 @@
 <script>
+import { store } from '../store';
 export default {
     name: 'Card',
-    props: ['img', 'name', 'archetype'],
+    data(){
+      return{
+        store,
+      };
+    },
 };
 </script>
 
 <template>
-    <div class="card-container d-flex flex-column align-items-center">
+    <div class="card-container d-flex flex-column align-items-center" v-for="card in store.cards" > 
       <div class="card-img">
-        <img :src="img" alt="name" class="img-fluid">
+        <img :src="card.card_images[0].image_url" alt="name" class="img-fluid"> 
       </div>
-      <div class="card-name">
-        <p>{{  name }}</p>
+      <div class="card-name text-center pt-1 fw-bold">
+        <p> {{ card.name }} </p>
       </div>
       <div class="card-archetype">
-        <p> {{  archetype }}</p>
+        <p> {{  card.archetype }}</p>
       </div>
     </div>
 
@@ -27,6 +32,10 @@ export default {
     margin-right: 22px;
     margin-bottom: 15px;
     background-color: #d48f38;
+
+    .card-name p{
+      color: white;
+    }
   };
 
   
