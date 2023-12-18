@@ -9,31 +9,23 @@ export default {
 
       };
     },
-
-    methods:{
-      getArchetypes: function(){
-        let j = 0;
-        for( let i = 0 ; i < store.cards.length ; i++ ){
-          if((!store.archetypes.includes(store.cards[i].archetype)) && (store.cards[i].archetype !== undefined)){
-            store.archetypes[j] = store.cards[i].archetype;
-            j++;
-          }else if((store.cards[i].archetype === undefined) && (!store.archetypes.includes("N/A")) ){
-            store.archetypes[j] = "N/A";
-            j++;
-          } 
-        }
-        console.log(store.archetypes);
-      }
-    },
+    created(){
+      //questa chiamata axion popola l'array "archetypes" con tutti gli archetipi disponibili nella nostra API con un apposita chiamata
+      axios.get(store.apiArchetypesUrl).then((response) => {
+        store.archetypes = response.data;
+        });
+      //rimane da gestire la visualizzazione delle card priva di un valore archetipo
+    }
 };
 </script>
 
 <template>
-  <div class="container" v-on:click="this.getArchetypes" >
-    <div class="filter-container p-2">
+  <div class="container" >
+    <div class="filter-container p-2" >
       <select class="form-select" aria-label="Default select example" v-model="store.searchText" >
-        <option :value="all" selected> All </option>
-        <option :value="archetype" v-for="archetype in store.archetypes"> {{ archetype }}</option>
+        <!-- l'attribbuto selected non funziona e non so il perchè-->
+        <option value="All" selected @click.prevent="$emit('allArchetype')"> All Archetypes</option>
+        <option :value="archetype.archetype_name" v-for="archetype in store.archetypes" @click.prevent="$emit('searchArchetype')"> {{ archetype.archetype_name }}</option>
       </select>
     </div>
   </div>
@@ -42,7 +34,7 @@ export default {
 <style>
 
 .filter-container{
-  width: 150px;
+  width: 180px;
 }
 
 </style>

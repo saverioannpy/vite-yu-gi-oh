@@ -1,5 +1,4 @@
 <script>
-import axios from 'axios';
 import Card from './Card.vue';
 import { store } from '../store';
 export default {
@@ -12,17 +11,14 @@ export default {
         store,
       };
     },
-   created(){
-    axios.get(store.apiUrlOffset).then((response) => {
-      store.cards = response.data.data;
-    });
-   },
 };
 </script>
 
 <template>
   <div class="container">
+    <!-- Contenitore generale delle carte-->
     <div class="cards-container d-flex flex-wrap justify-content-center">
+      <!-- Il componente Card viene richiamato e genera ogni singola carta-->
       <Card /> 
     </div>
   </div>

@@ -11,13 +11,17 @@ export default {
 </script>
 
 <template>
+    <!-- Contenitore della carta -->
     <div class="card-container d-flex flex-column align-items-center" v-for="card in store.cards" > 
+      <!-- Immagine della carta -->
       <div class="card-img">
         <img :src="card.card_images[0].image_url" alt="name" class="img-fluid"> 
       </div>
+      <!-- nome della carta -->
       <div class="card-name text-center pt-1 fw-bold">
         <p> {{ card.name }} </p>
       </div>
+      <!-- archetipoi della carta-->
       <div class="card-archetype">
         <p> {{  card.archetype }}</p>
       </div>
